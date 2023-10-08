@@ -13,24 +13,7 @@ export default function App(props) {
     activeNotes: [],
     archivedNotes: [],
   });
-  // const [activeNotes, setActiveNotes] = useState([]);
-  // const [archivedNotes, setArchiveNotes] = useState([]);
 
-  // useEffect(() => {
-  //   const lowerSearch = search.toLowerCase();
-  //   const active = notes.filter(
-  //     ({ archived, title, body }) =>
-  //       !archived &&
-  //       (!lowerSearch ||
-  //         title.toLowerCase().includes(lowerSearch) ||
-  //         body.toLowerCase().includes(lowerSearch))
-  //   );
-
-  //   const archieved = notes.filter(({ archived }) => archived);
-
-  //   setActiveNotes(active);
-  //   setArchiveNotes(archieved);
-  // }, [notes, search]);
   useEffect(() => {
     const lowerSearch = search.toLowerCase();
 
