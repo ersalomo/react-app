@@ -69,6 +69,7 @@ const Form = (props) => {
             <Input
               id="title"
               onChange={onChange}
+              placeHolder="masukkan judul"
               name="title"
               value={form.title}
             />
@@ -86,6 +87,7 @@ const Form = (props) => {
               id="body"
               onChange={onChange}
               name="body"
+              placeHolder="masukkan content"
               className=""
               value={form.body}
             />

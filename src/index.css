@@ -190,7 +190,7 @@ h1 {
 /* form */
 .form-container {
   width: 400px;
-  background: linear-gradient(#ffffff, #c9c9c9) padding-box;
+  background: linear-gradient(#f1eeee, #c9c9c9) padding-box;
   border: 2px solid transparent;
   padding: 32px 24px;
   font-size: 14px;
@@ -245,13 +245,15 @@ h1 {
   resize: none;
   color: rgb(5, 5, 5);
   height: 96px;
+  margin-top: 10px;
   border: 1px solid #414141;
   background-color: transparent;
   font-family: inherit;
 }
 
 .form-container .form-group input::placeholder {
-  opacity: 0.5;
+  font-size: x-small;
+  opacity: 0.9;
 }
 
 .form-container .form-group input:focus {

@@ -52,11 +52,6 @@ export default function App(props) {
         note.id === id ? { ...note, archived: !note.archived } : note
       )
     );
-    // setNotes((prevNotes) =>
-    //   prevNotes.map((note) =>
-    //     note.id === id ? { ...note, archived: !note.archived } : note
-    //   )
-    // );
   };
 
   return (
