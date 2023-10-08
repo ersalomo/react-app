@@ -8,27 +8,51 @@ import ActiveNote from './components/ActiveNote';
 export default function App(props) {
   const [search, setSearch] = useState('');
   const [notes, setNotes] = useState(getInitialData());
-  const [activeNotes, setActiveNotes] = useState(
-    notes.filter(({ archived }) => !archived)
-  );
-  const [archivedNotes, setArchiveNotes] = useState(
-    notes.filter(({ archived }) => archived)
-  );
 
+  const [filteredNotes, setFilteredNotes] = useState({
+    activeNotes: [],
+    archivedNotes: [],
+  });
+  // const [activeNotes, setActiveNotes] = useState([]);
+  // const [archivedNotes, setArchiveNotes] = useState([]);
+
+  // useEffect(() => {
+  //   const lowerSearch = search.toLowerCase();
+  //   const active = notes.filter(
+  //     ({ archived, title, body }) =>
+  //       !archived &&
+  //       (!lowerSearch ||
+  //         title.toLowerCase().includes(lowerSearch) ||
+  //         body.toLowerCase().includes(lowerSearch))
+  //   );
+
+  //   const archieved = notes.filter(({ archived }) => archived);
+
+  //   setActiveNotes(active);
+  //   setArchiveNotes(archieved);
+  // }, [notes, search]);
   useEffect(() => {
     const lowerSearch = search.toLowerCase();
-    const active = notes.filter(
-      ({ archived, title, body }) =>
-        !archived &&
-        (!lowerSearch ||
-          title.toLowerCase().includes(lowerSearch) ||
-          body.toLowerCase().includes(lowerSearch))
+
+    const filtered = notes.reduce(
+      (result, note) => {
+        const { archived, title, body } = note;
+        if (
+          !archived &&
+          (!lowerSearch ||
+            title.toLowerCase().includes(lowerSearch) ||
+            body.toLowerCase().includes(lowerSearch))
+        ) {
+          result.activeNotes.push(note);
+        } else if (archived) {
+          result.archivedNotes.push(note);
+        }
+        return result;
+      },
+      { activeNotes: [], archivedNotes: [] }
     );
 
-    const archieved = notes.filter(({ archived }) => archived);
-
-    setActiveNotes(active);
-    setArchiveNotes(archieved);
+    setFilteredNotes(filtered);
   }, [notes, search]);
 
   const onChange = (e) => {
@@ -36,25 +60,20 @@ export default function App(props) {
     setSearch(value);
   };
   const handleDeleteNote = (id) => {
-    const newNotes = notes.filter((note) => note.id !== id);
-    setNotes(newNotes);
+    setNotes(notes.filter((note) => note.id !== id));
   };
 
   const handleToArchiveNote = (id) => {
-    toogleArchived(id);
-  };
-
-  const toogleArchived = (id) => {
-    const index = notes.findIndex((note) => note.id === id);
-    if (index === -1) {
-      return;
-    }
-
-    const updateNotes = [...notes];
-    const note = updateNotes[index];
-    const newNote = { ...note, archived: !note.archived };
-    updateNotes[index] = newNote;
-    setNotes(updateNotes);
+    setNotes(
+      notes.map((note) =>
+        note.id === id ? { ...note, archived: !note.archived } : note
+      )
+    );
+    // setNotes((prevNotes) =>
+    //   prevNotes.map((note) =>
+    //     note.id === id ? { ...note, archived: !note.archived } : note
+    //   )
+    // );
   };
 
   return (
@@ -63,13 +82,13 @@ export default function App(props) {
       <Search onChange={onChange} placeHolder="cari..." className="search" />
 
       <ActiveNote
-        activeNotes={activeNotes}
+        activeNotes={filteredNotes.activeNotes}
         handleDeleteNote={handleDeleteNote}
         handleToArchiveNote={handleToArchiveNote}
       />
 
       <ArchivedNote
-        archivedNotes={archivedNotes}
+        archivedNotes={filteredNotes.archivedNotes}
         handleDeleteNote={handleDeleteNote}
         handleToArchiveNote={handleToArchiveNote}
       />

@@ -24,7 +24,7 @@ const ArhivedNote = (props) => {
                   <Button
                     onClick={() => handleToArchiveNote(id)}
                     className="btn btn-archived"
-                    txt="Arsipkan"
+                    txt="Batal"
                   />
                   <Button
                     onClick={() => handleDeleteNote(id)}

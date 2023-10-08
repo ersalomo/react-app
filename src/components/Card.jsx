@@ -1,20 +1,14 @@
 const Card = (props) => {
   const { children, className = '' } = props;
-  return (
-    <div className={`card ${className}`}>
-      <div>{children}</div>
-    </div>
-  );
+  return <div className={`card ${className}`}>{children}</div>;
 };
 const Header = (props) => {
   const { title, createdAt } = props;
   return (
-    <>
-      <div className="header">
-        <p className="title">{title}</p>
-        <p className="sub-title">{createdAt}</p>
-      </div>
-    </>
+    <div className="header">
+      <p className="title">{title}</p>
+      <p className="sub-title">{createdAt}</p>
+    </div>
   );
 };
 const Body = (props) => {

@@ -8,7 +8,6 @@ body {
   font-family: system-ui, sans-serif;
   color: black;
   background-color: #bbbec9be;
-  /* background-color: #9fa3af; */
 }
 
 h1 {
@@ -18,9 +17,7 @@ h1 {
 
 /* card */
 .card {
-  /* max-width: 280px; */
   width: 280px;
-  /* position: relative; */
   flex-direction: column;
   justify-content: space-between;
   border-width: 1px;
@@ -30,6 +27,15 @@ h1 {
   padding: 1rem;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s;
+  position: relative;
+  height: 45vh;
+}
+.actions {
+  position: absolute;
+  display: flex;
+  bottom: 10px;
+  right: 14px;
+  width: 90%;
 }
 .card:hover {
   transform: scale(1.03);
@@ -72,15 +78,16 @@ h1 {
 
 .message {
   color: #000000;
+  white-space: wrap;
+  max-width: 100%;
+  font-size: small;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  display: -webkit-box;
 }
 
-.actions {
-  /* width: 88%; */
-  /* position: absolute; */
-  bottom: 10px;
-}
 .actions .btn {
-  bottom: 0;
   color: rgb(0, 0, 0);
 }
 
@@ -124,6 +131,7 @@ h1 {
   background-color: rgba(249, 250, 251, 1);
   color: rgba(107, 114, 128, 1);
   transition: all 0.15s ease;
+  padding: 5px;
 }
 
 .btn:hover {
