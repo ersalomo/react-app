@@ -1,6 +1,7 @@
 import Card from './Card';
 import Button from './Button';
 import Title from './Title';
+import NoSuchItem from './NoSuchItem';
 import { showFormattedDate, getInitialData } from '../utils/utils';
 
 const ArhivedNote = (props) => {
@@ -36,7 +37,7 @@ const ArhivedNote = (props) => {
             );
           })
         ) : (
-          <p className="">Tidak ada cacatan</p>
+          <NoSuchItem msg="Archived note is empty" />
         )}
       </div>
     </>

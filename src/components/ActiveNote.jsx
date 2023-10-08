@@ -1,6 +1,7 @@
 import Card from './Card';
 import Button from './Button';
 import Title from './Title';
+import NoSuchItem from './NoSuchItem';
 import { showFormattedDate, getInitialData } from '../utils/utils';
 
 const ActiveNote = (props) => {
@@ -26,6 +27,7 @@ const ActiveNote = (props) => {
                     className="btn btn-archived"
                     txt="Arsipkan"
                   />
+
                   <Button
                     onClick={() => handleDeleteNote(id)}
                     className="btn btn-delete"
@@ -36,7 +38,7 @@ const ActiveNote = (props) => {
             );
           })
         ) : (
-          <p className="">Tidak ada cacatan</p>
+          <NoSuchItem />
         )}
       </div>
     </>
